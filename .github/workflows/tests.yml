@@ -59,7 +59,7 @@ jobs:
         with:
           install: false
           command: yarn cy:api
-        continue-on-error: false
+        continue-on-error: true
         env:
           FORCE_COLOR: 2
           CYPRESS_APP_URL: ${{ secrets.API_URL }}
@@ -70,8 +70,8 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v2
         with:
-          name: results-tests
-          path: public
+          name: allure-results
+          path: allure-results
           retention-days: 10
 
   generate_report:

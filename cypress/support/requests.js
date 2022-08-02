@@ -8,7 +8,7 @@ import credentials from './credentials'
 Cypress.Commands.add('doLogin', (email, pass) => {
   cy.request({
     method: 'POST',
-    url: `${Cypress.env('baseUrl')}/login`,
+    url: '/login',
     headers: credentials.HEADERS,
     failOnStatusCode: false,
     body: {
@@ -23,7 +23,7 @@ Cypress.Commands.add('doLogin', (email, pass) => {
 Cypress.Commands.add('consultUser', (name, email, _id) => {
   cy.request({
     method: 'GET',
-    url: `${Cypress.env('baseUrl')}/usuarios`,
+    url: '/usuarios',
     headers: credentials.HEADERS,
     failOnStatusCode: false,
     qs: {
@@ -37,7 +37,7 @@ Cypress.Commands.add('consultUser', (name, email, _id) => {
 Cypress.Commands.add('registerUser', (name, email, password, admin) => {
   cy.request({
     method: 'POST',
-    url: `${Cypress.env('baseUrl')}/usuarios`,
+    url: '/usuarios',
     headers: credentials.HEADERS,
     failOnStatusCode: false,
     body: {
@@ -52,7 +52,7 @@ Cypress.Commands.add('registerUser', (name, email, password, admin) => {
 Cypress.Commands.add('modifyUser', (_id, newName, newEmail, newPass) => {
   cy.request({
     method: 'PUT',
-    url: `${Cypress.env('baseUrl')}/usuarios/${_id}`,
+    url: '/usuarios/${_id}',
     headers: credentials.HEADERS,
     failOnStatusCode: false,
     body: {
@@ -67,7 +67,7 @@ Cypress.Commands.add('modifyUser', (_id, newName, newEmail, newPass) => {
 Cypress.Commands.add('deleteUser', (_id) => {
   cy.request({
     method: 'DELETE',
-    url: `${Cypress.env('baseUrl')}/usuarios/${_id}`,
+    url: '/usuarios/${_id}',
     headers: credentials.HEADERS,
     failOnStatusCode: false
   })
@@ -78,7 +78,7 @@ Cypress.Commands.add('deleteUser', (_id) => {
 Cypress.Commands.add('consultProduct', (_id, name, description) => {
   cy.request({
     method: 'GET',
-    url: `${Cypress.env('baseUrl')}/produtos`,
+    url: '/produtos',
     headers: credentials.HEADERS,
     failOnStatusCode: false,
     qs: {
@@ -92,7 +92,7 @@ Cypress.Commands.add('consultProduct', (_id, name, description) => {
 Cypress.Commands.add('consultProductById', (_id) => {
   cy.request({
     method: 'GET',
-    url: `${Cypress.env('baseUrl')}/usuarios/${_id}`,
+    url: '/usuarios/${_id}',
     headers: credentials.HEADERS,
     failOnStatusCode: false
   })
@@ -101,7 +101,7 @@ Cypress.Commands.add('consultProductById', (_id) => {
 Cypress.Commands.add('registerProduct', (name, price, description, qtd) => {
   cy.request({
     method: 'POST',
-    url: `${Cypress.env('baseUrl')}/produtos`,
+    url: '/produtos',
     headers: {
       Authorization: localStorage.getItem('token')
     },
@@ -118,7 +118,7 @@ Cypress.Commands.add('registerProduct', (name, price, description, qtd) => {
 Cypress.Commands.add('modifyProduct', (_id, newName, newPrice, newDescription, newQtd) => {
   cy.request({
     method: 'PUT',
-    url: `${Cypress.env('baseUrl')}/produtos/${_id}`,
+    url: '/produtos/${_id}',
     headers: {
       Authorization: localStorage.getItem('token')
     },
@@ -135,7 +135,7 @@ Cypress.Commands.add('modifyProduct', (_id, newName, newPrice, newDescription, n
 Cypress.Commands.add('deleteProduct', (_id) => {
   cy.request({
     method: 'DELETE',
-    url: `${Cypress.env('baseUrl')}/produtos/${_id}`,
+    url: '/produtos/${_id}',
     headers: {
       Authorization: localStorage.getItem('token')
     },
@@ -148,7 +148,7 @@ Cypress.Commands.add('deleteProduct', (_id) => {
 Cypress.Commands.add('consultCartById', (_id) => {
   cy.request({
     method: 'GET',
-    url: `${Cypress.env('baseUrl')}/carrinhos/${_id}`,
+    url: '/carrinhos/${_id}',
     headers: credentials.HEADERS,
     failOnStatusCode: false
   })
@@ -157,7 +157,7 @@ Cypress.Commands.add('consultCartById', (_id) => {
 Cypress.Commands.add('consultCart', (totalPrice, totalQtd, idUser) => {
   cy.request({
     method: 'GET',
-    url: `${Cypress.env('baseUrl')}/carrinhos`,
+    url: '/carrinhos',
     headers: credentials.HEADERS,
     failOnStatusCode: false,
     qs: {
@@ -175,7 +175,7 @@ Cypress.Commands.add('registerCart', (
 ) => {
   cy.request({
     method: 'POST',
-    url: `${Cypress.env('baseUrl')}/carrinhos`,
+    url: '/carrinhos',
     headers: {
       Authorization: localStorage.getItem('token')
     },
@@ -198,7 +198,7 @@ Cypress.Commands.add('registerCart', (
 Cypress.Commands.add('deleteWhenPurchaseCompleteCart', () => {
   cy.request({
     method: 'DELETE',
-    url: `${Cypress.env('baseUrl')}/carrinhos/concluir-compra`,
+    url: '/carrinhos/concluir-compra',
     headers: {
       Authorization: localStorage.getItem('token')
     },
@@ -209,7 +209,7 @@ Cypress.Commands.add('deleteWhenPurchaseCompleteCart', () => {
 Cypress.Commands.add('deleteWhenCancelCart', () => {
   cy.request({
     method: 'DELETE',
-    url: `${Cypress.env('baseUrl')}/carrinhos/cancelar-compra`,
+    url: '/carrinhos/cancelar-compra',
     headers: {
       Authorization: localStorage.getItem('token')
     },
