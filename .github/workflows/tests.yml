@@ -15,9 +15,7 @@ jobs:
     steps:
       - run: echo 'Should run ESlint check...'
       - uses: actions/checkout@v3
-      - uses: stefanoeb/eslint-action@1.0.2
-        with:
-          files: cypress/
+        run: yarn lint
 
   # e2e_tests:
   #   name: E2E tests
