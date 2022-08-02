@@ -1,0 +1,107 @@
+name: Tests
+
+on:
+  schedule:
+    - cron: '0 12 * * *'
+  push:
+    branches: [ main ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  lint:
+    name: ESLint check
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'Should run ESlint check...'
+      - uses: actions/checkout@v3
+      - uses: stefanoeb/eslint-action@1.0.2
+        with:
+          files: cypress/
+
+  # e2e_tests:
+  #   name: E2E tests
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+
+  #     - name: Setup
+  #       uses: ./.github/actions/setup
+
+  #     - name: Run e2e tests
+  #       uses: cypress-io/github-action@v4
+  #       with:
+  #         install: false
+  #         command: yarn cy:e2e
+  #       continue-on-error: false
+  #       env:
+  #         FORCE_COLOR: 2
+
+  #     - name: Upload report
+  #       if: always()
+  #       uses: actions/upload-artifact@v2
+  #       with:
+  #         name: results-tests
+  #         path: public
+  #         retention-days: 10
+
+  api_tests:
+    name: API tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup
+        uses: ./.github/actions/setup
+
+      - name: Run api tests
+        uses: cypress-io/github-action@v4
+        with:
+          install: false
+          command: yarn cy:api
+        continue-on-error: false
+        env:
+          FORCE_COLOR: 2
+          CYPRESS_APP_URL: ${{ secrets.API_URL }}
+          CYPRESS_EMAIL: ${{ secrets.EMAIL }}
+          CYPRESS_PASSWORD: ${{ secrets.PASSWORD }}
+
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: results-tests
+          path: public
+          retention-days: 10
+
+  generate_report:
+    name: Generate report
+    needs: [api_tests]
+    if: always() && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Get allure history
+        uses: actions/checkout@v2
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+      
+      - name: Allure report action
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        with:
+          allure_results: allure-results
+          allure_history: allure-history
+          
+      - name: Deploy report to github pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GH_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: allure-history

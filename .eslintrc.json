@@ -1,0 +1,42 @@
+{
+  "plugins": [
+    "cypress",
+    "chai-friendly"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:cypress/recommended",
+    "plugin:chai-friendly/recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "rules": {
+    "indent": [
+      "error",
+      2
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "semi": [
+      "error",
+      "never"
+    ],
+    "space-before-blocks": "error",
+    "comma-spacing": ["error", { "before": false, "after": true }],
+    "arrow-spacing": ["error", { "before": true, "after": true }],
+    "keyword-spacing": ["error", { "before": true, "after": true }],
+    "no-template-curly-in-string": "off",
+    "no-unused-vars": ["error", { "ignoreRestSiblings": true }]
+  },
+  "env": {
+    "cypress/globals": true,
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true
+  }
+}
