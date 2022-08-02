@@ -9,14 +9,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  lint:
-    name: ESLint check
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: ESlint check
-        run: yarn lint
-
   # e2e_tests:
   #   name: E2E tests
   #   runs-on: ubuntu-latest
@@ -100,6 +92,6 @@ jobs:
         if: always()
         uses: peaceiris/actions-gh-pages@v2
         env:
-          PERSONAL_TOKEN: ${{ secrets.GH_TOKEN }}
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: allure-history
