@@ -13,8 +13,8 @@ jobs:
     name: ESLint check
     runs-on: ubuntu-latest
     steps:
-      - run: echo 'Should run ESlint check...'
       - uses: actions/checkout@v3
+      - name: ESlint check
         run: yarn lint
 
   # e2e_tests:
