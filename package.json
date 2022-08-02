@@ -4,17 +4,17 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "clean": "yarn allure:clear && rm -rf node_modules/ yarn-error.log yarn.lock",
+    "clean": "allure:clear && rm -rf node_modules/ yarn-error.log yarn.lock",
     "allure:clear": "rm -rf allure-results/ allure-report runner-results */screenshots */videos */parallel-weights* || true",
     "allure:report": "allure generate allure-results --clean -o allure-report",
     "allure:history": "mv -f allure-report/history allure-results/history && rm -r allure-report || true",
     "allure:serve": "allure serve",
-    "cy:open": "yarn cypress open --browser chrome --env allure=true",
-    "cy:api": "yarn cypress run --spec cypress/e2e/api/*/*.api.cy.js --env allure=true",
-    "cy:e2e": "yarn cypress run --spec cypress/e2e/ui/*/*.ui.cy.js --env allure=true",
-    "cy:run": "yarn cypress run --spec cypress/e2e/ui/*/*.ui.cy.js --browser chrome --env allure=true",
-    "lint": "yarn eslint cypress/ --fix",
-    "test": "yarn allure:clear && yarn cy:run && yarn allure:report"
+    "cy:open": "cypress open --browser chrome --env allure=true",
+    "cy:api": "cypress run --spec cypress/e2e/api/*/*.api.cy.js --env allure=true",
+    "cy:e2e": "cypress run --spec cypress/e2e/ui/*/*.ui.cy.js --env allure=true",
+    "cy:run": "cypress run --spec cypress/e2e/ui/*/*.ui.cy.js --browser chrome --env allure=true",
+    "lint": "eslint cypress/ --fix",
+    "test": "allure:clear && yarn cy:run && yarn allure:report"
   },
   "private": true,
   "dependencies": {
