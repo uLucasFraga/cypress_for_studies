@@ -8,7 +8,7 @@ const credentials = {
   }
 }
 
-Cypress.Commands.add('getToken', (email = Cypress.env('EMAIL'), pass = Cypress.env('PASSWORD')) => {
+Cypress.Commands.add('getToken', (email = Cypress.env('email'), pass = Cypress.env('password')) => {
   cy.doLogin(email, pass)
     .then(response => {
       localStorage.setItem('token', response.body.authorization)

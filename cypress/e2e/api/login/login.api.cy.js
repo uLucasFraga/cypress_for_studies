@@ -40,7 +40,7 @@ describe('[LOGIN] :: TESTS API', () => {
   it('/POST - Realizar login com tipo de email inválido', () => {
     cy.doLogin(
       'email_invalido',
-      Cypress.env('PASSWORD')
+      Cypress.env('password')
     )
       .then((response) => {
         expect(response.status).to.eq(httpStatus.StatusCodes.BAD_REQUEST)
@@ -51,7 +51,7 @@ describe('[LOGIN] :: TESTS API', () => {
   it('/POST - Realizar login com email inexistente', () => {
     cy.doLogin(
       'email_nao@existe.com',
-      Cypress.env('PASSWORD')
+      Cypress.env('password')
     )
       .then((response) => {
         expect(response.status).to.eq(httpStatus.StatusCodes.UNAUTHORIZED)
@@ -62,7 +62,7 @@ describe('[LOGIN] :: TESTS API', () => {
   it('/POST - Realizar login sem preencher o email do usuário', () => {
     cy.doLogin(
       '',
-      Cypress.env('PASSWORD')
+      Cypress.env('password')
     )
       .then((response) => {
         expect(response.status).to.eq(httpStatus.StatusCodes.BAD_REQUEST)
@@ -72,7 +72,7 @@ describe('[LOGIN] :: TESTS API', () => {
 
   it('/POST - Realizar login com senha inválida', () => {
     cy.doLogin(
-      Cypress.env('EMAIL'),
+      Cypress.env('email'),
       'senha_invalida'
     )
       .then((response) => {
@@ -83,7 +83,7 @@ describe('[LOGIN] :: TESTS API', () => {
 
   it('/POST - Realizar login sem preencher a senha', () => {
     cy.doLogin(
-      Cypress.env('EMAIL'),
+      Cypress.env('email'),
       ''
     )
       .then((response) => {
