@@ -52,9 +52,9 @@ jobs:
         continue-on-error: true
         env:
           FORCE_COLOR: 2
-          CYPRESS_APP_URL: ${{ secrets.API_URL }}
-          CYPRESS_EMAIL: ${{ secrets.EMAIL }}
-          CYPRESS_PASSWORD: ${{ secrets.PASSWORD }}
+          CYPRESS_APP_URL: ${{ secrets.baseUrl }}
+          CYPRESS_EMAIL: ${{ secrets.email }}
+          CYPRESS_PASSWORD: ${{ secrets.password }}
 
       - name: Upload report
         if: always()
