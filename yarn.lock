@@ -177,6 +177,11 @@ ajv@^6.10.0, ajv@^6.12.4:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
+allure-commandline@^2.18.1:
+  version "2.18.1"
+  resolved "https://registry.yarnpkg.com/allure-commandline/-/allure-commandline-2.18.1.tgz#c850e7bac4d19dd4dc509a583bd3f7de08202e7a"
+  integrity sha512-bB0jY00yXxROgaTkC/PTFzmT0sVuHGiOhm80onO+N/tr5MF3eQrBkwTOdvuefEWJ1NTACutvmzZSYn8o6W2evA==
+
 ansi-colors@4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/ansi-colors/-/ansi-colors-4.1.1.tgz#cbb9ae256bf750af1eab344f229aa27fe94ba348"

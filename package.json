@@ -12,9 +12,9 @@
     "cy:open": "cypress open --browser chrome --env allure=true",
     "cy:api": "cypress run --spec cypress/e2e/api/*/*.api.cy.js --env allure=true",
     "cy:e2e": "cypress run --spec cypress/e2e/ui/*/*.ui.cy.js --env allure=true",
-    "cy:run": "cypress run --spec cypress/e2e/ui/*/*.ui.cy.js --browser chrome --env allure=true",
+    "cy:run": "cypress run --spec cypress/e2e/**/*.*.cy.js --browser chrome --env allure=true",
     "lint": "eslint cypress/ --fix",
-    "test": "allure:clear && yarn cy:run && yarn allure:report"
+    "test": "yarn allure:clear && yarn cy:run && yarn allure:report && allure open"
   },
   "private": true,
   "dependencies": {
@@ -24,6 +24,7 @@
   "devDependencies": {
     "@faker-js/faker": "^7.3.0",
     "@shelex/cypress-allure-plugin": "latest",
+    "allure-commandline": "^2.18.1",
     "cypress-multi-reporters": "^1.6.1",
     "eslint": "^8.20.0",
     "eslint-plugin-cypress": "latest",
